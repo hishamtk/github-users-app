@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardContent,
   CardMedia,
@@ -7,6 +8,8 @@ import {
   Typography,
 } from "@material-ui/core";
 
+import { Link as RouterLink } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   card: {
     height: "100%",
@@ -14,10 +17,18 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   cardMedia: {
-    paddingTop: "56.25%", // 16:9
+    // 16:9
+    borderRadius: "50%",
+    width: "300px",
+    height: "300px",
+    margin: theme.spacing(0, 'auto'),
   },
   cardContent: {
     flexGrow: 1,
+  },
+  button: {
+    background: "#333333",
+    color: "#fff",
   },
 }));
 
@@ -32,10 +43,20 @@ const UserItem = (props) => {
           title={props.login}
         />
         <CardContent className={classes.cardContent}>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h5" align="center" component="h2">
             {props.login}
           </Typography>
-          <Typography>link to profile page</Typography>
+          <Typography align="center">
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              component={RouterLink}
+              to={`/github/user/${props.login}`}
+            >
+              Github Profile
+            </Button>
+          </Typography>
         </CardContent>
       </Card>
     </Grid>
