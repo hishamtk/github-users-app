@@ -5,9 +5,11 @@ import About from "./Components/Layout/About";
 import Contact from "./Components/Layout/Contact";
 import Album from "./Components/Album";
 import Navbar from "./Components/Layout/Navbar";
+import Users from "./Components/Users/Users"
 
 import { Container, CssBaseline, makeStyles } from "@material-ui/core";
 import Footer from "./Components/Layout/Footer";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   hero: {
@@ -16,15 +18,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const App = () => {
-    const [loading,setLoading] = useState(false);
-    const [users,setUsers] = useState([]);
-    const [user,setUser] = useState([]);
-    const [repos,setRepos] = useState([])
-    const [alert,setAlert] = useState(null)
+  const [loading, setLoading] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState([]);
+  const [repos, setRepos] = useState([]);
+  const [alert, setAlert] = useState(null);
 
-
-  
-
+  const getAllusers = async () => {
+    try {
+      setLoading(true);
+      let { data } = await axios.get("https://api.github.com/users");
+      setUsers(data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error("Error on Api call", error);
+    }
+  };
 
   const classes = useStyles();
   return (
@@ -35,7 +45,7 @@ const App = () => {
       <Container className={classes.hero}>
         <Switch>
           <Route exact path="/github">
-            <Users getAllusers={getAllusers} users={users}/>
+            <Users getAllusers={getAllusers} users={users} />
             <h1>Users</h1>
           </Route>
           <Route exact path="/github/about">
