@@ -1,6 +1,7 @@
 import { Container, Grid, makeStyles } from "@material-ui/core";
 import { useEffect } from "react";
 
+import Search from "./Search";
 import UserItem from "./UserItem";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,20 +15,24 @@ const Users = (props) => {
   const classes = useStyles();
   useEffect(() => {
     props.getAllusers();
-  });
+    //eslint-disable-next-line
+  }, []);
 
   return (
-    <Container className={classes.cardGrid} maxWidth="lg">
-      <Grid container spacing={4}>
-        {props.users.map((user) => (
-          <UserItem
-            key={user.id}
-            login={user.login}
-            avatar_url={user.avatar_url}
-          />
-        ))}
-      </Grid>
-    </Container>
+    <div>
+      <Search searchUsers={props.searchUsers} />
+      <Container className={classes.cardGrid} maxWidth="lg">
+        <Grid container spacing={4}>
+          {props.users.map((user) => (
+            <UserItem
+              key={user.id}
+              login={user.login}
+              avatar_url={user.avatar_url}
+            />
+          ))}
+        </Grid>
+      </Container>
+    </div>
   );
 };
 

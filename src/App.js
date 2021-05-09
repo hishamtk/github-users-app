@@ -5,7 +5,7 @@ import About from "./Components/Layout/About";
 import Contact from "./Components/Layout/Contact";
 import Album from "./Components/Album";
 import Navbar from "./Components/Layout/Navbar";
-import Users from "./Components/Users/Users"
+import Users from "./Components/Users/Users";
 
 import { Container, CssBaseline, makeStyles } from "@material-ui/core";
 import Footer from "./Components/Layout/Footer";
@@ -36,6 +36,31 @@ const App = () => {
     }
   };
 
+  const searchUsers = async (text) => {
+    try {
+      if (text === "") {
+        return handleAlert("Search should not be empty", "danger");
+      }
+
+      setLoading(false);
+      let { data } = await axios.get(
+        `https://api.github.com/search/users?q=${text}`
+      );
+      setUsers(data.items);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+    }
+  };
+
+  const handleAlert = (msg, type) => {
+    setAlert({ msg, type });
+    setTimeout(() => {
+      setAlert(null);
+    }, 5000);
+  };
+
   const classes = useStyles();
   return (
     <Fragment>
@@ -45,7 +70,11 @@ const App = () => {
       <Container className={classes.hero}>
         <Switch>
           <Route exact path="/github">
-            <Users getAllusers={getAllusers} users={users} />
+            <Users
+              getAllusers={getAllusers}
+              searchUsers={searchUsers}
+              users={users}
+            />
             <h1>Users</h1>
           </Route>
           <Route exact path="/github/about">
