@@ -1,11 +1,26 @@
-import Button from "@material-ui/core/Button";
+import React, { Component, Fragment } from "react";
 
-function App() {
-  return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
-  );
+import Album from "./Components/Album";
+import Navbar from "./Components/Layout/Navbar";
+
+import { CssBaseline } from "@material-ui/core";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <CssBaseline />
+
+        <Navbar />
+        <Album />
+      </Fragment>
+    );
+  }
 }
 
 export default App;
