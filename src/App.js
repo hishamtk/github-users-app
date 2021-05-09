@@ -1,8 +1,10 @@
+import Button from "@material-ui/core/Button";
+
 function App() {
   return (
-    <div>
-      <h1>hai</h1>
-    </div>
+    <Button variant="contained" color="primary">
+      Hello World
+    </Button>
   );
 }
 
