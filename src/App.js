@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import About from "./Components/Layout/About";
@@ -16,6 +16,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const App = () => {
+    const [loading,setLoading] = useState(false);
+    const [users,setUsers] = useState([]);
+    const [user,setUser] = useState([]);
+    const [repos,setRepos] = useState([])
+    const [alert,setAlert] = useState(null)
+
+
+  
+
+
   const classes = useStyles();
   return (
     <Fragment>
@@ -25,6 +35,7 @@ const App = () => {
       <Container className={classes.hero}>
         <Switch>
           <Route exact path="/github">
+            <Users getAllusers={getAllusers} users={users}/>
             <h1>Users</h1>
           </Route>
           <Route exact path="/github/about">

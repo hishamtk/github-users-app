@@ -3,7 +3,7 @@ import { AppBar, makeStyles, Toolbar, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import GitHubIcon from "@material-ui/icons/GitHub";
-import { InsertChartOutlinedTwoTone } from "@material-ui/icons";
+
 
 const useStyles = makeStyles((theme) => ({
   link: {
