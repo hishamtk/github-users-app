@@ -18,7 +18,6 @@ const Search = ({ searchUsers }) => {
   });
 
   const handleFormData = (e) => {
- 
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -50,8 +49,8 @@ const Search = ({ searchUsers }) => {
             type="submit"
             fullWidth
             size="medium"
-            variant="contained"
             color="primary"
+            variant="contained"
             className={classes.submit}
           >
             Search

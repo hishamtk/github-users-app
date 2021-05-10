@@ -15,19 +15,24 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     display: "flex",
     flexDirection: "column",
+    paddingTop: "20px",
+    transition: "1s",
+    "&:hover": {
+      background: "#CFF2EE",
+    },
   },
+
   cardMedia: {
-    // 16:9
     borderRadius: "50%",
-    width: "200px",
-    height: "200px",
+    width: "250px",
+    height: "250px",
     margin: theme.spacing(0, "auto"),
   },
   cardContent: {
     flexGrow: 1,
   },
   button: {
-    background: "#333333",
+    background: "#354f52",
     color: "#fff",
   },
 }));
@@ -43,14 +48,14 @@ const UserItem = (props) => {
           title={props.login}
         />
         <CardContent className={classes.cardContent}>
-          <Typography gutterBottom variant="h5" align="center" component="h2">
+          <Typography gutterBottom variant="h3" align="center" component="h2">
             {props.login}
           </Typography>
           <Typography align="center">
             <Button
-              className={classes.button}
               variant="contained"
-              color="primary"
+              color="secondary"
+              // className={classes.button}
               component={RouterLink}
               to={`github/user/${props.login}`}
             >
