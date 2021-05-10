@@ -1,20 +1,16 @@
-import { Button, Card, CardMedia, Grid, makeStyles } from "@material-ui/core";
 import React, { useEffect } from "react";
-// import Repos from "./Repos";
+import { Link as RouterLink } from "react-router-dom";
 
-import ContactMailIcon from "@material-ui/icons/ContactMail";
+import { Button, Card,CardContent, CardMedia, Grid, makeStyles, Typography } from "@material-ui/core";
 
-import CardContent from "@material-ui/core/CardContent";
+import {
+  ContactMailIcon,
+  AcUnitIcon,
+  KeyboardBackspaceIcon,
+} from "@material-ui/icons";
 
-import AcUnitIcon from "@material-ui/icons/AcUnit";
-
-import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
 
 import Repos from "./Repos";
-
-import { Link as RouterLink } from "react-router-dom";
-import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import Spinner from "../Layout/Spinner";
 
 const useStyles = makeStyles((theme) => ({

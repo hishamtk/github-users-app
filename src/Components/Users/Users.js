@@ -1,7 +1,8 @@
 import { Container, Grid, makeStyles } from "@material-ui/core";
-import { useEffect } from "react";
-import Spinner from "../Layout/Spinner";
 
+import { useEffect } from "react";
+
+import Spinner from "../Layout/Spinner";
 import Search from "./Search";
 import UserItem from "./UserItem";
 
