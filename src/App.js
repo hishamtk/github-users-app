@@ -12,6 +12,8 @@ import Footer from "./Components/Layout/Footer";
 import axios from "axios";
 import Profile from "./Components/Users/Profile";
 
+import AlertItem from "./Components/Layout/AlertItem";
+
 const useStyles = makeStyles((theme) => ({
   hero: {
     padding: theme.spacing(8, 0, 6),
@@ -59,7 +61,7 @@ const App = () => {
   const searchUsers = async (text) => {
     try {
       if (text === "") {
-        return handleAlert("Search should not be empty", "danger");
+        return handleAlert("Search should not be empty", "error");
       }
 
       setLoading(false);
@@ -87,7 +89,9 @@ const App = () => {
       <CssBaseline />
 
       <Navbar />
+
       <Container className={classes.hero} maxWidth="lg">
+        <AlertItem alert={alert} />
         <Switch>
           <Route exact path="/github">
             <Users

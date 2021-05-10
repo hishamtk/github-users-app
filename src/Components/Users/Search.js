@@ -36,7 +36,7 @@ const Search = ({ searchUsers }) => {
           <TextField
             variant="outlined"
             margin="normal"
-            required
+            // required
             fullWidth
             id="text"
             value={formData.text}
