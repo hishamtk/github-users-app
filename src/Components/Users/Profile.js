@@ -1,14 +1,19 @@
 import React, { useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
-import { Button, Card,CardContent, CardMedia, Grid, makeStyles, Typography } from "@material-ui/core";
-
 import {
-  ContactMailIcon,
-  AcUnitIcon,
-  KeyboardBackspaceIcon,
-} from "@material-ui/icons";
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+import AcUnitIcon from "@material-ui/icons/AcUnit";
+import ContactMailIcon from "@material-ui/icons/ContactMail";
 
 import Repos from "./Repos";
 import Spinner from "../Layout/Spinner";
