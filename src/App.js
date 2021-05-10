@@ -3,13 +3,14 @@ import { Route, Switch } from "react-router-dom";
 
 import About from "./Components/Layout/About";
 import Contact from "./Components/Layout/Contact";
-import Album from "./Components/Album";
+
 import Navbar from "./Components/Layout/Navbar";
 import Users from "./Components/Users/Users";
 
 import { Container, CssBaseline, makeStyles } from "@material-ui/core";
 import Footer from "./Components/Layout/Footer";
 import axios from "axios";
+import Profile from "./Components/Users/Profile";
 
 const useStyles = makeStyles((theme) => ({
   hero: {
@@ -33,6 +34,25 @@ const App = () => {
     } catch (error) {
       setLoading(false);
       console.error("Error on Api call", error);
+    }
+  };
+
+  const getUserAndRepo = async (user) => {
+    try {
+      setLoading(true);
+
+      let { data } = await axios.get(`https://api.github.com/users/${user}`);
+
+      setUser(data);
+      let res = await axios.get(
+        `https://api.github.com/users/${user}/repos?per_page=10`
+      );
+      setRepos(res.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+
+      console.log(error);
     }
   };
 
@@ -67,15 +87,17 @@ const App = () => {
       <CssBaseline />
 
       <Navbar />
-      <Container className={classes.hero}>
+      <Container className={classes.hero} maxWidth="lg">
         <Switch>
           <Route exact path="/github">
             <Users
               getAllusers={getAllusers}
               searchUsers={searchUsers}
               users={users}
+              loading={loading}
+              alert={alert}
+              handleAlert={handleAlert}
             />
-            <h1>Users</h1>
           </Route>
           <Route exact path="/github/about">
             <About />
@@ -83,10 +105,22 @@ const App = () => {
           <Route exact path="/github/contact">
             <Contact />
           </Route>
+          <Route
+            exact
+            path="/github/user/:userId"
+            render={(props) => (
+              <Profile
+                loading={loading}
+                getUserAndRepo={getUserAndRepo}
+                user={user}
+                repos={repos}
+                {...props}
+              />
+            )}
+          />
         </Switch>
       </Container>
 
-      <Album />
       <Footer />
     </Fragment>
   );

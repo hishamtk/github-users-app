@@ -19,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
   cardMedia: {
     // 16:9
     borderRadius: "50%",
-    width: "300px",
-    height: "300px",
-    margin: theme.spacing(0, 'auto'),
+    width: "200px",
+    height: "200px",
+    margin: theme.spacing(0, "auto"),
   },
   cardContent: {
     flexGrow: 1,
@@ -52,7 +52,7 @@ const UserItem = (props) => {
               variant="contained"
               color="primary"
               component={RouterLink}
-              to={`/github/user/${props.login}`}
+              to={`github/user/${props.login}`}
             >
               Github Profile
             </Button>

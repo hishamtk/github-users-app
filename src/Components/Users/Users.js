@@ -21,7 +21,7 @@ const Users = (props) => {
   return (
     <div>
       <Search searchUsers={props.searchUsers} />
-      <Container className={classes.cardGrid} maxWidth="lg">
+      <Container className={classes.cardGrid} >
         <Grid container spacing={4}>
           {props.users.map((user) => (
             <UserItem

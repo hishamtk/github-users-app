@@ -3,6 +3,7 @@ import { makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
+    width: "100vw",
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
@@ -34,7 +35,7 @@ const Footer = () => {
         color="textSecondary"
         component="p"
       >
-        Follow us
+        All rights reserved
       </Typography>
       <Copyright />
     </footer>
