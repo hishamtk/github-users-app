@@ -1,8 +1,14 @@
-import { Card, Grid, Typography, makeStyles } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+  makeStyles,
+} from "@material-ui/core";
 
 import FolderIcon from "@material-ui/icons/Folder";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
   },
@@ -21,10 +27,22 @@ const useStyles = makeStyles({
     width: "90%",
     padding: "10px",
   },
-  icon: {
-    paddingRight: "15px",
+  hover: {
+    transition: "0.8s",
+    "&:hover": {
+      background: "#CFF2EE",
+    },
   },
-});
+  icon: {
+    marginRight: theme.spacing(4),
+  },
+  button: {
+    textTransform: "none",
+  },
+  link: {
+    textDecoration: "none",
+  },
+}));
 
 const Repos = ({ repos }) => {
   const classes = useStyles();
@@ -39,17 +57,26 @@ const Repos = ({ repos }) => {
       >
         {repos.map((repo) => {
           return (
-            <Grid item xs={12} className={classes.card}>
-              <Card key={repo.id}>
-                <Typography variant="h5">
-                  <FolderIcon />
-                  {repo.name}
-                </Typography>
-                <Typography variant="h6">
-                  {"description:  "}
-                  {repo.description}
-                </Typography>
-              </Card>
+            <Grid key={repo.id} item xs={12} className={classes.card}>
+              <a
+                href={repo.html_url}
+                rel="noreferrer"
+                target="_blank"
+                className={classes.link}
+              >
+                <Card className={classes.hover}>
+                  <CardContent>
+                    <Typography variant="h6" color="secondary">
+                      <FolderIcon className={classes.icon} />
+                      {repo.name}
+                    </Typography>
+                    <Typography variant="body1">
+                      {"description:  "}
+                      {repo.description}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </a>
             </Grid>
           );
         })}

@@ -1,6 +1,4 @@
-import { colors, createMuiTheme } from "@material-ui/core";
-
-import typography from "./typography";
+import { createMuiTheme } from "@material-ui/core";
 
 const theme = createMuiTheme({
   palette: {
@@ -13,8 +11,8 @@ const theme = createMuiTheme({
     background: {
       main: "#d8f3dc",
     },
+    
   },
-  typography,
 });
 
 export default theme;

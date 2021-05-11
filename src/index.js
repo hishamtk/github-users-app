@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
-import theme from "./theme/index";
+import theme from "./theme/theme";
 
 ReactDOM.render(
   <React.StrictMode>
