@@ -17,6 +17,7 @@ import AlertItem from "./Components/Layout/AlertItem";
 const useStyles = makeStyles((theme) => ({
   hero: {
     padding: theme.spacing(8, 0, 6),
+    minHeight: "75vh",
   },
 }));
 
