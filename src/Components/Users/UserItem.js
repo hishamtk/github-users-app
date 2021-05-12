@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
-import { Link as RouterLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
     background: "#354f52",
     color: "#fff",
   },
+  link: {
+    textDecoration: "none",
+  },
 }));
 
 const UserItem = (props) => {
@@ -52,15 +55,11 @@ const UserItem = (props) => {
             {props.login}
           </Typography>
           <Typography align="center">
-            <Button
-              variant="contained"
-              color="secondary"
-              // className={classes.button}
-              component={RouterLink}
-              to={`github/user/${props.login}`}
-            >
-              Github Profile
-            </Button>
+            <Link to={`/github/user/${props.login}`} className={classes.link}>
+              <Button variant="contained" color="secondary">
+                Github Profile
+              </Button>
+            </Link>
           </Typography>
         </CardContent>
       </Card>

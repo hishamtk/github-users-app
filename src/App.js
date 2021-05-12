@@ -28,12 +28,8 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState([]);
   const [repos, setRepos] = useState([]);
-  
-  
-  
+
   const [alert, setAlert] = useState(null);
-
-
 
   const getAllusers = async () => {
     try {
