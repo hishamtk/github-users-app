@@ -17,7 +17,9 @@ import AcUnitIcon from "@material-ui/icons/AcUnit";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
 import BookIcon from "@material-ui/icons/Book";
 import MailIcon from "@material-ui/icons/Mail";
-import GradeIcon from '@material-ui/icons/Grade';
+import GradeIcon from "@material-ui/icons/Grade";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 import Repos from "./Repos";
 import Spinner from "../Layout/Spinner";
@@ -49,9 +51,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(0, 2, 4, 12),
   },
-  iconFollow:{
-    marginRight:theme.spacing(5)
-  }
+  iconFollow: {
+    marginRight: theme.spacing(5),
+  },
 }));
 
 const Profile = (props) => {
@@ -156,29 +158,35 @@ const Profile = (props) => {
                         GitHub Profile
                       </a>
                     </Typography>
+                    <CardContent>
+                      <Typography align="start" variant="h4" color="secondary">
+                        <Typography
+                          className={classes.iconProfile}
+                          variant="h6"
+                          display="inline"
+                        >
+                          Hirable:
+                        </Typography>
+
+                        {user.hireable ? (
+                          <CheckCircleIcon />
+                        ) : (
+                          <HighlightOffIcon />
+                        )}
+                      </Typography>
+                    </CardContent>
                   </CardContent>
                 </Card>
 
                 <Card raised>
                   <CardContent>
-                    <Typography
-                      align="justify"
-                      variant="h6"
-                      color="secondary"
-                    >
+                    <Typography align="justify" variant="h6" color="secondary">
                       <GradeIcon className={classes.iconFollow} />
-                      Followers : 
-                      {user.followers}
+                      Followers :{user.followers}
                     </Typography>
-                    <Typography
-                      align="justify"
-                      variant="h6"
-                      color="secondary"
-                    >
-                    
+                    <Typography align="justify" variant="h6" color="secondary">
                       <GradeIcon className={classes.iconFollow} />
-                      Following :
-                      {user.following}
+                      Following :{user.following}
                     </Typography>
                   </CardContent>
                 </Card>

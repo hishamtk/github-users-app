@@ -8,8 +8,10 @@ import Navbar from "./Components/Layout/Navbar";
 import Users from "./Components/Users/Users";
 
 import { Container, CssBaseline, makeStyles } from "@material-ui/core";
+
 import Footer from "./Components/Layout/Footer";
 import axios from "axios";
+
 import Profile from "./Components/Users/Profile";
 
 import AlertItem from "./Components/Layout/AlertItem";
@@ -17,7 +19,7 @@ import AlertItem from "./Components/Layout/AlertItem";
 const useStyles = makeStyles((theme) => ({
   hero: {
     padding: theme.spacing(8, 0, 6),
-    minHeight: "75vh",
+    minHeight: "75vh", // to set the footer to bottom
   },
 }));
 
@@ -26,7 +28,12 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState([]);
   const [repos, setRepos] = useState([]);
+  
+  
+  
   const [alert, setAlert] = useState(null);
+
+
 
   const getAllusers = async () => {
     try {
@@ -47,9 +54,7 @@ const App = () => {
       let { data } = await axios.get(`https://api.github.com/users/${user}`);
 
       setUser(data);
-      let res = await axios.get(
-        `https://api.github.com/users/${user}/repos?per_page=10`
-      );
+      let res = await axios.get(`https://api.github.com/users/${user}/repos`);
       setRepos(res.data);
       setLoading(false);
     } catch (error) {

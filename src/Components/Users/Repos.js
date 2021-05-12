@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -7,6 +8,7 @@ import {
 } from "@material-ui/core";
 
 import FolderIcon from "@material-ui/icons/Folder";
+import PaginationDiv from "../Layout/PaginationDiv";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,6 +47,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Repos = ({ repos }) => {
+  const [pageRepos, setPageRepos] = useState([]);
+  const [currPage, setCurrPage] = useState(1);
+  const [pages, setPages] = useState(0);
+  const perPage = 5;
+
+  useEffect(() => {
+    calcPages(repos, perPage);
+  }, [repos]);
+
+  useEffect(() => {
+    const showRepo = () => {
+      if (currPage < 1 || currPage > pages) {
+        return;
+      }
+      setPageRepos(repos.slice((currPage - 1) * perPage, currPage * perPage));
+    };
+    showRepo(currPage);
+  }, [currPage, pages, repos]);
+
+  const calcPages = (arr, perPage) => {
+    setPages(Math.ceil(arr.length / perPage));
+  };
+
   const classes = useStyles();
   return (
     <>
@@ -55,7 +80,7 @@ const Repos = ({ repos }) => {
         justify="center"
         alignItems="center"
       >
-        {repos.map((repo) => {
+        {pageRepos.map((repo) => {
           return (
             <Grid key={repo.id} item xs={12} className={classes.card}>
               <a
@@ -80,6 +105,12 @@ const Repos = ({ repos }) => {
             </Grid>
           );
         })}
+        <PaginationDiv
+          pages={pages}
+          currPage={currPage}
+          setCurrPage={setCurrPage}
+          total={repos.length}
+        />
       </Grid>
     </>
   );
